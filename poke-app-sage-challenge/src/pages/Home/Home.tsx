@@ -26,9 +26,10 @@ interface PokemonDetails {
     types: Type[],
     abilities: Ability[];
   }
+
 const Home = () => {
     const [randomPokemon, setRandomPokemon] = useState<PokemonDetails | null>(null);
-  const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     const fetchRandomPokemon = async () => {
         const randomId = Math.floor(Math.random() * 1010) + 1;

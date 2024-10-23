@@ -2,6 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPokemonByName } from '../../services/pokemon';
 
+interface Ability {
+    ability: {
+      name: string;
+      url: string;
+    };
+  }
+
+  interface Type {
+    slot: number;
+    type: {
+        name: string;
+        url: string;
+    };
+}
+
 interface PokemonDetails {
     name: string;
     sprites: {
@@ -9,7 +24,9 @@ interface PokemonDetails {
     };
     height: number;
     weight: number;
-}
+    types: Type[],
+    abilities: Ability[];
+  }
 
 const PokemonComponent = () => {
     const { name } = useParams<{ name: string }>(); 
@@ -45,6 +62,22 @@ const PokemonComponent = () => {
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             <p>Height: {pokemon.height}</p>
             <p>Weight: {pokemon.weight}</p>
+            <h3>Type</h3>
+            <ul>
+                {pokemon.types && pokemon.types.length > 0 ? (
+                pokemon.types.map((typeObj) => (
+                <li key={1}>{typeObj.type.name}</li>
+                ))
+                ) : (
+                    <li>No types available</li>
+                )}  
+            </ul>
+            <h3>Abilities</h3>
+            <ul>
+                {pokemon.abilities.map((abilityObj) => (
+                <li key={abilityObj.ability.name}>{abilityObj.ability.name}</li>
+                ))}
+            </ul>
         </div>
     )
 }

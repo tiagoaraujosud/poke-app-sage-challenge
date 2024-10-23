@@ -32,18 +32,14 @@ interface Ability {
   }
 
 export interface Pokemon {
-    abilities: Ability[];
-    base_experience: number;
-    forms: Form[];
-    height: number;
-    id: number;
     name: string;
-    order: number;
-    stats: Stat[];
-    types: Type[];
+    sprites: {
+      front_default: string;
+    };
+    height: number;
     weight: number;
   }
-
+  
 export const getPokemonList = async (): Promise<Pokemon[]> => {
   try {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');

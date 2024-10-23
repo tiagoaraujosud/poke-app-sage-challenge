@@ -21,7 +21,6 @@ const PokemonComponent = () => {
           try {
             const data = await getPokemonByName(name || ''); 
             setPokemon(data);
-            console.log(data.name)
           } catch (error: any) {
             setError('Error fetching Pokémon details');
           }

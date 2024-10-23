@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getPokemonList, Pokemon } from '../../services/pokemon';
 
 
@@ -28,7 +29,9 @@ const List = () => {
           <h1>Pokemon List</h1>
           <ul>
             {pokemonList.map((pokemon) => (
-              <li key={pokemon.name}>{pokemon.name}</li>
+              <li key={pokemon.name}>
+                <Link to={`/pokemon/${pokemon.name}`}>{pokemon.name}</Link>
+              </li>
             ))}
           </ul>
         </div>

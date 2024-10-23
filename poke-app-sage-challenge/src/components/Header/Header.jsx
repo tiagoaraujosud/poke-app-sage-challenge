@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'; // Certifique-se de que Link é importado
+import { Link } from 'react-router-dom'; // Certifique-se de que Link é importado
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';  // Importações do Material UI
 
 const Header = () => {
@@ -11,7 +11,6 @@ const Header = () => {
         </Typography>
         <Button color="inherit" component={Link} to="/">Home</Button>
         <Button color="inherit" component={Link} to="/list">List</Button>
-        <Button color="inherit" component={Link} to="/pokemon">Pokemon</Button>
       </Toolbar>
     </AppBar>
   );

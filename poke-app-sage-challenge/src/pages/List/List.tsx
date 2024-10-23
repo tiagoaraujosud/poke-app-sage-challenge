@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getPokemonList } from '../../services/pokemon';
-import { Pokemon } from '../../services/pokemontypes';
+import { getPokemonList, Pokemon } from '../../services/pokemon';
+
 
 const List = () => {
 

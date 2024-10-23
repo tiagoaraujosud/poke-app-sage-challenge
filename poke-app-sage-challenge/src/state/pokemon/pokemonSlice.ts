@@ -40,7 +40,28 @@ const initialState: PokemonState = {
 const pokemonSlice = createSlice({
     name: "pokemon",
     initialState,
-    reducers: {},
+    reducers: {
+        pokemonName: (state) => {
+            state.name;
+        },
+        pokemonSprites: (state) => {
+            state.sprites;
+        },
+        pokemonHeight: (state) => {
+            state.height;
+        },
+        pokemonWeight: (state) => {
+            state.weight;
+        },
+        pokemonTypes: (state) => {
+            state.types;
+        },
+        pokemonAbilities: (state) => {
+            state.abilities;
+        },
+    },
 });
+
+export const { pokemonName, pokemonSprites, pokemonHeight, pokemonWeight, pokemonTypes, pokemonAbilities} = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

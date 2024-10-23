@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getPokemonList, Pokemon } from '../../services/pokemon';
+import '../../styles.css';
 
 
 const List = () => {

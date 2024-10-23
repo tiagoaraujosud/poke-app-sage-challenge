@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { getPokemonById } from '../../services/pokemon';
+import '../../styles.css';
 
 interface Ability {
     ability: {
       name: string;
       url: string;
     };
-  }
+}
 
-  interface Type {
+interface Type {
     slot: number;
     type: {
         name: string;
@@ -25,7 +26,7 @@ interface PokemonDetails {
     weight: number;
     types: Type[],
     abilities: Ability[];
-  }
+}
 
 const Home = () => {
     const [randomPokemon, setRandomPokemon] = useState<PokemonDetails | null>(null);
@@ -47,11 +48,9 @@ const Home = () => {
             abilities: pokemon.abilities
           };
           setRandomPokemon(transformedPokemon);
-          console.log(transformedPokemon)
         } catch (error: any) {
           setError('Failed to load random Pokémon');
         }
-     
     };
 
     useEffect(() => {
@@ -66,18 +65,20 @@ const Home = () => {
         return <p>Loading...</p>;
     }
 
-    return(
-        <div>
+    return (
+        <div className="pokemon-container"> 
             <h1>Random Pokémon</h1>
             <h2>{randomPokemon.name}</h2>
-            <img src={randomPokemon.sprites.front_default} alt={randomPokemon.name} />
+            <div className="pokemon-image">
+                <img src={randomPokemon.sprites.front_default} alt={randomPokemon.name} />
+            </div>
             <p>Weight: {randomPokemon.weight}</p>
             <h3>Type</h3>
             <ul>
                 {randomPokemon.types && randomPokemon.types.length > 0 ? (
-                randomPokemon.types.map((typeObj) => (
-                <li key={1}>{typeObj.type.name}</li>
-                ))
+                    randomPokemon.types.map((typeObj) => (
+                        <li key={typeObj.slot}>{typeObj.type.name}</li>
+                    ))
                 ) : (
                     <li>No types available</li>
                 )}  
@@ -85,7 +86,7 @@ const Home = () => {
             <h3>Abilities</h3>
             <ul>
                 {randomPokemon.abilities.map((abilityObj) => (
-                <li key={abilityObj.ability.name}>{abilityObj.ability.name}</li>
+                    <li key={abilityObj.ability.name}>{abilityObj.ability.name}</li>
                 ))}
             </ul>
         </div>

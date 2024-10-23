@@ -52,3 +52,12 @@ export const getPokemonList = async (): Promise<Pokemon[]> => {
     throw new Error('Error fetching Pokemon list');
   }
 };
+
+export const getPokemonById = async (id: number): Promise<Pokemon> => {
+    try {
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      return response.data;
+    } catch (error) {
+      throw new Error('Error fetching Pokémon');
+    }
+};

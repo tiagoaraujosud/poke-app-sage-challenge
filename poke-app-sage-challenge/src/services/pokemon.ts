@@ -5,8 +5,6 @@ interface Ability {
       name: string;
       url: string;
     };
-    is_hidden: boolean;
-    slot: number;
   }
 
   interface Form {
@@ -26,9 +24,20 @@ interface Ability {
   interface Type {
     slot: number;
     type: {
-      name: string;
-      url: string;
+        name: string;
+        url: string;
     };
+}
+
+  interface PokemonDetails {
+    name: string;
+    sprites: {
+      front_default: string;
+    };
+    height: number;
+    weight: number;
+    abilities: Ability[]; 
+    types: Type[]
   }
 
 export interface Pokemon {
@@ -38,8 +47,10 @@ export interface Pokemon {
     };
     height: number;
     weight: number;
+    abilities: Ability[];
+    types: Type[]; 
   }
-  
+
 export const getPokemonList = async (): Promise<Pokemon[]> => {
   try {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');

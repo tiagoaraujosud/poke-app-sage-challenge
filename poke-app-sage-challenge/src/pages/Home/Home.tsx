@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { getPokemonById } from '../../services/pokemon';
 
+interface Ability {
+    ability: {
+      name: string;
+      url: string;
+    };
+  }
+
+  interface Type {
+    slot: number;
+    type: {
+        name: string;
+        url: string;
+    };
+}
 
 interface PokemonDetails {
     name: string;
@@ -9,6 +23,8 @@ interface PokemonDetails {
     };
     height: number;
     weight: number;
+    types: Type[],
+    abilities: Ability[];
   }
 const Home = () => {
     const [randomPokemon, setRandomPokemon] = useState<PokemonDetails | null>(null);
@@ -26,8 +42,11 @@ const Home = () => {
             },
             height: pokemon.height,
             weight: pokemon.weight,
+            types: pokemon.types,
+            abilities: pokemon.abilities
           };
-          setRandomPokemon(pokemon);
+          setRandomPokemon(transformedPokemon);
+          console.log(transformedPokemon)
         } catch (error: any) {
           setError('Failed to load random Pokémon');
         }
@@ -52,7 +71,23 @@ const Home = () => {
             <h2>{randomPokemon.name}</h2>
             <img src={randomPokemon.sprites.front_default} alt={randomPokemon.name} />
             <p>Weight: {randomPokemon.weight}</p>
-    </div>
+            <h3>Type</h3>
+            <ul>
+                {randomPokemon.types && randomPokemon.types.length > 0 ? (
+                randomPokemon.types.map((typeObj) => (
+                <li key={1}>{typeObj.type.name}</li>
+                ))
+                ) : (
+                    <li>No types available</li>
+                )}  
+            </ul>
+            <h3>Abilities</h3>
+            <ul>
+                {randomPokemon.abilities.map((abilityObj) => (
+                <li key={abilityObj.ability.name}>{abilityObj.ability.name}</li>
+                ))}
+            </ul>
+        </div>
     )
 }
 

@@ -9,7 +9,7 @@ const List = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchPokemonList = async () => {
           try {
             const data = await getPokemonList(); 
             setPokemonList(data); 
@@ -17,7 +17,7 @@ const List = () => {
             setError(error.message); 
           }
         };
-        fetchData(); 
+        fetchPokemonList(); 
     }, []);
 
     if (error) {

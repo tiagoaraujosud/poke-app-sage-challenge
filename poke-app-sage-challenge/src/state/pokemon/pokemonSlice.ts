@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface Ability {
     ability: {
-      name: string;
-      url: string;
+        name: string;
+        url: string;
     };
 }
 
@@ -18,7 +18,7 @@ interface Type {
 interface PokemonState {
     name: string;
     sprites: {
-      front_default: string;
+        front_default: string;
     };
     height: number;
     weight: number;
@@ -30,38 +30,23 @@ const initialState: PokemonState = {
     name: "",
     sprites: {
         front_default: "",
-      },
-      height: 0,
-      weight: 0,
-      types: [],
-      abilities: []
+    },
+    height: 0,
+    weight: 0,
+    types: [],
+    abilities: []
 }
 
 const pokemonSlice = createSlice({
     name: "pokemon",
     initialState,
     reducers: {
-        pokemonName: (state) => {
-            state.name;
-        },
-        pokemonSprites: (state) => {
-            state.sprites;
-        },
-        pokemonHeight: (state) => {
-            state.height;
-        },
-        pokemonWeight: (state) => {
-            state.weight;
-        },
-        pokemonTypes: (state) => {
-            state.types;
-        },
-        pokemonAbilities: (state) => {
-            state.abilities;
+        saveNamePokemon: (state, action) => {
+            state.name = action.payload.name;
         },
     },
 });
 
-export const { pokemonName, pokemonSprites, pokemonHeight, pokemonWeight, pokemonTypes, pokemonAbilities} = pokemonSlice.actions;
+export const { saveNamePokemon } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
